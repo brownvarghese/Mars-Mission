@@ -55,15 +55,17 @@ def mars_scrape():
 
     time.sleep(1)
 
-    html = browser.html
-    soup = bs(html, "html.parser")
+    # html = browser.html
+    # soup = bs(html, "html.parser")
 
     full_image_elem = browser.find_by_id("full_image")
     full_image_elem.click()
     browser.is_element_present_by_text("more info",wait_time = 1)
     more_info_elem = browser.find_link_by_partial_text("more info")
     more_info_elem.click()
-        
+    html = browser.html
+    soup = bs(html, "html.parser")
+
     featured_image_url = soup.select_one("figure.lede a img").get("src")
     image_url = f'https://www.jpl.nasa.gov{featured_image_url}'
         
